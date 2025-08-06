@@ -1,4 +1,18 @@
-FROM n8nio/n8n
+services:
+  - type: web
+    name: n8n
+    env: docker
+    plan: free
+    repo: https://github.com/TU_USUARIO/TU_REPO
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: "admin"
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: "admin123"
+      - key: WEBHOOK_TUNNEL_URL
+        value: "https://n8n.onrender.com"
 
-# Puerto por defecto de n8n
-EXPOSE 5678
+
