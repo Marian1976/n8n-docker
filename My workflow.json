@@ -1,0 +1,102 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b26aae75-2c1e-495f-8935-ec124870bd48",
+      "name": "Telegram Trigger",
+      "webhookId": "5a620c1a-aed7-482c-b8d3-1232165baab9",
+      "credentials": {
+        "telegramApi": {
+          "id": "OnZFPRO8EIIVEo87",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/catalog/list/query?catalogId=48&pageNo=1&pageSize=5",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "30ed87da-b6bc-413e-935c-d58b83b638eb",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "chatId": "=1275793364",
+        "text": "={{$json[\"data\"][\"articles\"].map(article => `<b>${article[\"title\"]}</b>\\n${article[\"url\"]}`).join(\"\\n\\n\")}}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "022c47f1-81f5-489c-b7fa-54870882de07",
+      "name": "Send a text message",
+      "webhookId": "cff4861b-cdf1-4b76-9c6c-1e992e5457a3",
+      "credentials": {
+        "telegramApi": {
+          "id": "OnZFPRO8EIIVEo87",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "06da5bca-ea98-43cd-9661-7afe7a7ccbeb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "310e08e156745f39cfe5aabe49717c7817976bacdddc5328180c6b11f55c3831"
+  },
+  "id": "3QgsyREdGHEUPrAM",
+  "tags": []
+}

@@ -1,0 +1,2 @@
+{"__type":"$$EventMessageAudit","id":"1793c728-15ae-4051-8d53-5b1f82304b11","ts":"2025-08-05T11:26:31.210+00:00","eventName":"n8n.audit.user.login.success","message":"n8n.audit.user.login.success","payload":{"userId":"226a4b02-a085-4d2e-890f-5cc217d56a49","_email":"marianoyasociados@gmail.com","_firstName":"Mariano Martin","_lastName":"Fernandez","globalRole":"global:owner","authenticationMethod":"email"}}
+{"__type":"$$EventMessageConfirm","confirm":"1793c728-15ae-4051-8d53-5b1f82304b11","ts":"2025-08-05T11:26:31.211+00:00","source":{"id":"0","name":"eventBus"}}
